@@ -28,10 +28,12 @@ resource "azurerm_storage_container" "example" {
   container_access_type = "private"
 }
 
-data "azurerm_storage_blob" "example" {
+resource "azurerm_storage_blob" "example" {
   name                   = var.blob_name
   storage_account_name   = azurerm_storage_account.example.name
   storage_container_name = azurerm_storage_container.example.name
+  type                   = "Block"
+  source                 = "terraform_task_2_working_with_terraform.zip"
 }
 
 
